@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Career Planner — Discover your engineering path</title>
+    <meta name="description" content="Discover personalized engineering paths & structured growth maps." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="ambient" aria-hidden="true">
+      <span class="blob blob-1"></span>
+      <span class="blob blob-2"></span>
+      <span class="blob blob-3"></span>
+      <span class="grid-noise"></span>
+    </div>
+
+    <header class="nav" data-testid="planner-nav">
+      <a class="brand" href="#" data-testid="brand-link">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6z"/><path d="m9 12 2 2 4-4"/></svg>
+        </span>
+        <span class="brand-text">Career Planner<span class="brand-dot">.</span></span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#planner">Planner</a>
+        <a href="#paths">Paths</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#compare">Compare</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button
+          class="icon-btn theme-toggle"
+          id="themeToggle"
+          aria-label="Toggle theme"
+          data-testid="theme-toggle-btn"
+        >
+          <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="btn btn-ghost" data-testid="signin-btn">Sign in</button>
+        <button class="btn btn-primary" data-testid="get-started-btn">Get started</button>
+      </div>
+    </header>
+
+    <section class="hero" data-testid="hero-section">
+      <div class="hero-inner">
+        <span class="eyebrow" data-testid="hero-eyebrow">
+          <span class="dot-pulse"></span>
+          AI-guided career planning 
+        </span>
+
+        <h1 class="hero-title" data-testid="hero-title">
+          AI Career <span class="gradient-text">Planner</span>
+        </h1>
+
+        <p class="hero-subtitle" data-testid="hero-subtitle">
+          Discover personalized engineering paths &amp; structured growth maps —
+          tailored to your skills, interests, and the next 5 years of your life.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#planner" class="btn btn-primary btn-lg" data-testid="hero-cta-primary">
+            Plan my career
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <!-- <a href="#paths" class="btn btn-ghost btn-lg" data-testid="hero-cta-secondary">
+            See sample paths
+          </a> -->
+        </div>
+
+        <!-- <div class="hero-stats" data-testid="hero-stats">
+          <div class="stat">
+            <span class="stat-num">120+</span>
+            <span class="stat-label">Engineering paths</span>
+          </div>
+          <span class="stat-divider"></span>
+          <div class="stat">
+            <span class="stat-num">14k</span>
+            <span class="stat-label">Roadmaps generated</span>
+          </div>
+          <span class="stat-divider"></span>
+          <div class="stat">
+            <span class="stat-num">4.9★</span>
+            <span class="stat-label">User rating</span>
+          </div>
+        </div> -->
+      </div>
+    </section>
+
+    <section class="section" id="planner">
+      <div class="section-head">
+        <span class="kicker">Step 01 · Profile</span>
+        <h2>Tell us about <span class="gradient-text">you</span></h2>
+        <p class="muted">Drop in your details — we'll match you to a personalized engineering path in seconds.</p>
+      </div>
+
+      <form class="card form-card" id="plannerForm" data-testid="planner-form" autocomplete="off">
+        <div class="form-grid">
+          <label class="field" data-testid="field-name">
+            <span class="field-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </span>
+            <input type="text" id="f-name" required placeholder=" " data-testid="input-name" />
+            <span class="field-label">Full name</span>
+          </label>
+
+          <label class="field" data-testid="field-email">
+            <span class="field-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+            </span>
+            <input type="email" id="f-email" required placeholder=" " data-testid="input-email" />
+            <span class="field-label">Email address</span>
+          </label>
+
+         
+
+         <div class="custom-select field field-wide" id="stdSelect">
+  
+  <span class="field-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 2 2 7l10 5 10-5-10-5z"/>
+      <path d="M2 17l10 5 10-5"/>
+    </svg>
+  </span>
+
+  <div class="select-display" id="stdDisplay">Select your class</div>
+
+  <div class="select-dropdown">
+    <div data-value="8th">8th</div>
+    <div data-value="9th">9th</div>
+    <div data-value="10th">10th</div>
+    <div data-value="11th">11th</div>
+    <div data-value="12th">12th</div>
+    <div data-value="College 1st Year">College 1st Year</div>
+    <div data-value="College 2nd Year">College 2nd Year</div>
+    <div data-value="College 3rd Year">College 3rd Year</div>
+    <div data-value="College Final Year">College Final Year</div>
+  </div>
+
+  <input type="hidden" id="f-std" required />
+
+  <span class="field-label">Your Class / Standard</span>
+</div>
+          <label class="field" data-testid="field-skills">
+            <span class="field-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 4.6L5 8.5l3.7 3.2L7.8 17 12 14.4 16.2 17l-.9-5.3L19 8.5l-5.1-.9z"/></svg>
+            </span>
+            <input
+              type="text"
+              id="f-skills"
+              placeholder=" "
+              data-testid="input-skills"
+            />
+            <span class="field-label">Top skills (comma separated)</span>
+          </label>
+
+          <label class="field" data-testid="field-interests">
+            <span class="field-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </span>
+            <input
+              type="text"
+              id="f-interests"
+              placeholder=" "
+              data-testid="input-interests"
+            />
+            <span class="field-label">Interests &amp; passions</span>
+          </label>
+
+          <label class="field">
+          <span class="field-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2l3 7h7l-5.5 4.5L18 22l-6-4-6 4 1.5-8.5L2 9h7z"/>
+            </svg>
+          </span>
+
+          <input type="text" id="f-strengths" placeholder=" " />
+          <span class="field-label">Your Strengths</span>
+        </label>
+
+        <label class="field">
+  <span class="field-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M18 6L6 18M6 6l12 12"/>
+    </svg>
+  </span>
+
+  <input type="text" id="f-weaknesses" placeholder=" " />
+  <span class="field-label">Your Weaknesses</span>
+</label>
+<div class="custom-select field" id="serviceSelect">
+
+  <span class="field-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 2 2 7l10 5 10-5-10-5z"/>
+      <path d="M2 17l10 5 10-5"/>
+    </svg>
+  </span>
+
+  <div class="select-display" id="serviceDisplay">Select service</div>
+
+  <div class="select-dropdown">
+    <div data-value="foundry">Foundry</div>
+    <div data-value="gemini">Gemini</div>
+  </div>
+
+  <input type="hidden" id="aiProvider" />
+
+  <span class="field-label">Service</span>
+</div>
+
+
+
+      
+        </div>
+
+
+        <div class="form-foot">
+          <span class="form-meta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            We never share your data. Always private. Always yours.
+          </span>
+          <div class="form-actions">
+            <button type="reset" class="btn btn-ghost" data-testid="reset-btn">Reset</button>
+            <button type="submit" class="btn btn-primary" data-testid="generate-btn">
+              Generate my plan
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.09 6.26L20 10l-5 4.87L16.18 21 12 17.77 7.82 21 9 14.87 4 10l5.91-.74z"/></svg>
+            </button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <div class="empty-state" id="emptyState">
+  <div class="card empty-card">
+    <h2>🚀 Start Your Career Journey</h2>
+    <p class="muted">
+      Fill in your details above and click <strong>Generate my plan</strong> to get
+      personalized career paths, roadmap, and comparison.
+    </p>
+
+    <div class="empty-steps">
+      <div>1️⃣ Fill your details</div>
+      <div>2️⃣ Click Generate</div>
+      <div>3️⃣ Explore your career paths</div>
+    </div>
+  </div>
+</div>
+
+    <section class="section skeleton-section" id="skeletonSection" hidden data-testid="skeleton-section">
+      <div class="section-head">
+        <span class="kicker">Crunching numbers…</span>
+        <h2>Designing your <span class="gradient-text">paths</span></h2>
+      </div>
+      <div class="paths-grid">
+        <div class="card skel-card"><div class="skel skel-line w70"></div><div class="skel skel-line"></div><div class="skel skel-line w90"></div><div class="skel skel-block"></div><div class="skel skel-pill"></div></div>
+        <div class="card skel-card"><div class="skel skel-line w50"></div><div class="skel skel-line"></div><div class="skel skel-line w80"></div><div class="skel skel-block"></div><div class="skel skel-pill"></div></div>
+        <div class="card skel-card"><div class="skel skel-line w60"></div><div class="skel skel-line"></div><div class="skel skel-line w90"></div><div class="skel skel-block"></div><div class="skel skel-pill"></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="paths" data-testid="paths-section" hidden>
+      <div class="section-head">
+        <span class="kicker">Step 02 · Paths</span>
+        <h2>Your top <span class="gradient-text">3 engineering paths</span></h2>
+        <p class="muted">Hand-picked based on your skills and interests. Tap a card to dive deeper.</p>
+      </div>
+
+      <div class="paths-grid" id="pathsGrid" data-testid="paths-grid">
+        <article class="card path-card" data-testid="path-card-ai">
+          <header class="path-head">
+            <span class="path-emoji" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4 4 4 0 0 0-4 4 4 4 0 0 0 2 3.46A4 4 0 0 0 6 17a4 4 0 0 0 6 3 4 4 0 0 0 6-3 4 4 0 0 0 0-3.54A4 4 0 0 0 20 10a4 4 0 0 0-4-4 4 4 0 0 0-4-4z"/></svg>
+            </span>
+            <span class="match-pill"><span class="match-dot"></span>96% match</span>
+          </header>
+          <h3 class="path-title">AI / ML Engineer</h3>
+          <p class="path-desc">Build production-grade ML systems, work on LLM tooling, and ship models that drive product outcomes.</p>
+          <ul class="path-tags">
+            <li>Python</li><li>PyTorch</li><li>MLOps</li><li>LLMs</li>
+          </ul>
+          <div class="path-stats">
+          <div><span class="ps-num">$182k</span><span class="ps-lbl">avg salary</span></div>
+          <div><span class="ps-num">+38%</span><span class="ps-lbl">5yr growth</span></div>
+          <div><span class="ps-num">High</span><span class="ps-lbl">demand</span></div>
+        </div>
+          <footer class="path-foot">
+            <button class="btn btn-ghost btn-sm" data-testid="path-save-ai">Save</button>
+            <button class="btn btn-primary btn-sm" data-testid="path-explore-ai">
+              Explore path
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+          </footer>
+          <span class="card-glow" aria-hidden="true"></span>
+        </article>
+
+        <article class="card path-card featured" data-testid="path-card-platform">
+          <span class="badge-featured">Recommended</span>
+          <header class="path-head">
+            <span class="path-emoji" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </span>
+            <span class="match-pill"><span class="match-dot"></span>92% match</span>
+          </header>
+          <h3 class="path-title">Platform / Infra Engineer</h3>
+          <p class="path-desc">Design the rails: distributed systems, developer experience, internal tools and reliability at scale.</p>
+          <ul class="path-tags">
+            <li>Go</li><li>Kubernetes</li><li>gRPC</li><li>Observability</li>
+          </ul>
+          <div class="path-stats">
+            <div><span class="ps-num">$168k</span><span class="ps-lbl">avg salary</span></div>
+            <div><span class="ps-num">+24%</span><span class="ps-lbl">5yr growth</span></div>
+            <div><span class="ps-num">High</span><span class="ps-lbl">demand</span></div>
+          </div>
+          <footer class="path-foot">
+            <button class="btn btn-ghost btn-sm" data-testid="path-save-platform">Save</button>
+            <button class="btn btn-primary btn-sm" data-testid="path-explore-platform">
+              Explore path
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+          </footer>
+          <span class="card-glow" aria-hidden="true"></span>
+        </article>
+
+        <article class="card path-card" data-testid="path-card-product">
+          <header class="path-head">
+            <span class="path-emoji" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>
+            </span>
+            <span class="match-pill"><span class="match-dot"></span>88% match</span>
+          </header>
+          <h3 class="path-title">Product Engineer</h3>
+          <p class="path-desc">Live at the intersection of design, code and craft. Ship delightful end-to-end product experiences.</p>
+          <ul class="path-tags">
+            <li>React</li><li>TypeScript</li><li>Figma</li><li>Animation</li>
+          </ul>
+          <div class="path-stats">
+            <div><span class="ps-num">$154k</span><span class="ps-lbl">avg salary</span></div>
+            <div><span class="ps-num">+18%</span><span class="ps-lbl">5yr growth</span></div>
+            <div><span class="ps-num">Med</span><span class="ps-lbl">demand</span></div>
+          </div>
+          <footer class="path-foot">
+            <button class="btn btn-ghost btn-sm" data-testid="path-save-product">Save</button>
+            <button class="btn btn-primary btn-sm" data-testid="path-explore-product">
+              Explore path
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+          </footer>
+          <span class="card-glow" aria-hidden="true"></span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="roadmap" data-testid="roadmap-section" hidden>
+      <div class="section-head">
+        <div class="head-row">
+          <div>
+            <span class="kicker">Step 03 · Roadmap</span>
+            <h2>Your 5-year <span class="gradient-text">growth map</span></h2>
+            <p class="muted">A phase-by-phase blueprint for the AI/ML Engineer track.</p>
+          </div>
+          <div class="head-actions">
+            <button class="btn btn-ghost btn-sm" data-testid="roadmap-export">Export PDF</button>
+            <button class="btn btn-primary btn-sm" data-testid="roadmap-share">Share</button>
+          </div>
+        </div>
+      </div>
+
+      <ol class="timeline" data-testid="roadmap-timeline">
+        <li class="t-step">
+          <span class="t-marker" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </span>
+          <div class="card t-card">
+            <span class="t-when">Months 0 – 3</span>
+            <h3>Foundation Sprint</h3>
+            <p>Lock the basics. Linear algebra, probability, Python mastery. Ship 2 small ML projects on GitHub.</p>
+            <ul class="t-list">
+              <li>Andrew Ng ML Specialisation</li>
+              <li>Build a recommender system</li>
+              <li>Daily 30-min Leetcode warmups</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="t-step">
+          <span class="t-marker" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 4-9 4-9-4z"/><path d="m3 10 9 4 9-4M3 14l9 4 9-4"/></svg>
+          </span>
+          <div class="card t-card">
+            <span class="t-when">Months 3 – 9</span>
+            <h3>Deep Dive: Modern ML</h3>
+            <p>PyTorch, transformers, fine-tuning. Build 1 production-grade LLM-powered side project.</p>
+            <ul class="t-list">
+              <li>FastAI + Karpathy zero-to-hero</li>
+              <li>Fine-tune an open-source LLM</li>
+              <li>Write 3 blog posts on findings</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="t-step">
+          <span class="t-marker" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 9 11l4 4 8-8"/><path d="M14 7h7v7"/></svg>
+          </span>
+          <div class="card t-card">
+            <span class="t-when">Year 1 – 2</span>
+            <h3>First ML Role</h3>
+            <p>Land an ML/AI Engineer role. Focus on shipping, not perfection. Build internal trust.</p>
+            <ul class="t-list">
+              <li>Apply to 50+ targeted teams</li>
+              <li>Own at least 1 model in production</li>
+              <li>Start mentoring interns</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="t-step">
+          <span class="t-marker" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V7z"/></svg>
+          </span>
+          <div class="card t-card">
+            <span class="t-when">Year 2 – 4</span>
+            <h3>Senior &amp; Specialisation</h3>
+            <p>Pick a niche: LLM infra, agents, or retrieval. Become the go-to person on your team.</p>
+            <ul class="t-list">
+              <li>Lead a cross-team ML project</li>
+              <li>Publish or speak at a conference</li>
+              <li>Build a personal brand (newsletter)</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="t-step">
+          <span class="t-marker" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><circle cx="8" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </span>
+          <div class="card t-card">
+            <span class="t-when">Year 4 – 5</span>
+            <h3>Lead the Team</h3>
+            <p>Move into tech-lead or staff. Influence roadmaps. Ship the developer tool you've been dreaming of.</p>
+            <ul class="t-list">
+              <li>Hire your first 2 reports</li>
+              <li>Launch the tool publicly</li>
+              <li>Reach 10k+ active users</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="section" id="compare" data-testid="compare-section" hidden>
+      <div class="section-head">
+        <span class="kicker">Step 04 · Compare</span>
+       <h2>Compare <span class="gradient-text">Career Paths</span></h2>
+        <p class="muted">Side-by-side breakdown of your selected paths.</p>
+      </div>
+
+      <div class="compare-grid">
+        <article class="card compare-card compare-bad" data-testid="compare-old">
+          <header class="compare-head">
+            <span class="compare-chip chip-green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg>
+              <div id="compare-title-1">Career</div>
+            </span>
+          </header>
+          <ul class="compare-list">
+            <li><span class="li-icon good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span> Random YouTube tabs &amp; tutorial hell</li>
+            <li><span class="li-icon good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span> No clear next milestone or deadline</li>
+            <li><span class="li-icon good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span> Learning skills that don't compound</li>
+            <li><span class="li-icon good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span> Comparing yourself to the wrong people</li>
+            <li><span class="li-icon good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span> Hitting a senior-plateau in year 4</li>
+          </ul>
+        </article>
+
+        <article class="card compare-card compare-good" data-testid="compare-new">
+          <header class="compare-head">
+            <span class="compare-chip chip-green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg>
+             <div id="compare-title-2">Career</div>
+            </span>
+          </header>
+          <ul class="compare-list">
+            <li><span class="li-icon good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span> A roadmap tailored to YOUR strengths</li>
+            <li><span class="li-icon good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span> Quarterly milestones &amp; visible progress</li>
+            <li><span class="li-icon good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span> Skills picked for compounding leverage</li>
+            <li><span class="li-icon good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span> Benchmarks against the right peers</li>
+            <li><span class="li-icon good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span> Clear line to staff / lead by year 5</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section cta-section">
+      <div class="card cta-card" data-testid="cta-card">
+        <div>
+          <span class="kicker">Ready when you are</span>
+          <h2>Start building the next 5 years <span class="gradient-text">today</span>.</h2>
+          <p class="muted">Free to start. No credit card. Roadmaps in under 60 seconds.</p>
+        </div>
+        <div class="cta-actions">
+          <button class="btn btn-primary btn-lg" data-testid="cta-start">
+            Plan my career
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+          <button class="btn btn-ghost btn-lg" data-testid="cta-learn">Learn more</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer" data-testid="footer">
+      <div class="footer-row">
+        <span>© 2026 · Made by Farhan Sayyad.</span>
+        <span class="footer-links">
+          <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a>
+        </span>
+      </div>
+    </footer>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script src="index.js"></script>
+  <!-- <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"7f7b0fd8732c4326aae4b9d58d5c514a","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script> -->
+</body>
+</html>

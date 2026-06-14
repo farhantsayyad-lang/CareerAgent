@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trajectory — AI Career Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <!-- Ambient background orbs -->
+  <div class="ambient" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grain"></div>
+  </div>
+
+  <div class="app-shell">
+    <!-- ============== SIDEBAR ============== -->
+    <aside class="sidebar" data-testid="sidebar">
+      <div class="brand">
+        <div class="brand-mark">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M4 24L12 8L20 20L28 4" stroke="url(#bg)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="28" cy="4" r="3" fill="url(#bg)"/>
+            <defs>
+              <linearGradient id="bg" x1="0" y1="0" x2="32" y2="32">
+                <stop stop-color="#7C5CFF"/>
+                <stop offset="1" stop-color="#FF9466"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Trajectory</span>
+          <span class="brand-tag">career · ai</span>
+        </div>
+      </div>
+
+      <nav class="nav" data-testid="sidebar-nav">
+        <span class="nav-label">Workspace</span>
+        <button class="nav-item active" data-section="dashboard" data-testid="nav-dashboard">
+          <i class="fa-solid fa-grip-vertical"></i><span>Dashboard</span>
+          <span class="nav-dot"></span>
+        </button>
+        <button class="nav-item" data-section="roadmap" data-testid="nav-roadmap">
+          <i class="fa-solid fa-route"></i><span>Roadmap</span>
+        </button>
+        <button class="nav-item" data-section="skillgap" data-testid="nav-skillgap">
+          <i class="fa-solid fa-bullseye"></i><span>Skill Gap Analyzer</span>
+        </button>
+        <button class="nav-item" data-section="compare" data-testid="nav-compare">
+          <i class="fa-solid fa-arrows-left-right"></i><span>Career Comparison</span>
+        </button>
+        <button class="nav-item" data-section="resume" data-testid="nav-resume">
+          <i class="fa-solid fa-file-lines"></i><span>Resume Generator</span>
+        </button>
+
+        <span class="nav-label" style="margin-top: 28px;">Discover</span>
+        <button class="nav-item ghost" data-testid="nav-mentors">
+          <i class="fa-solid fa-user-astronaut"></i><span>Mentors</span>
+          <span class="nav-pill">Soon</span>
+        </button>
+        <button class="nav-item ghost" data-testid="nav-jobs">
+          <i class="fa-solid fa-briefcase"></i><span>Job Board</span>
+          <span class="nav-pill">Soon</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-foot">
+        <div class="upgrade-card" data-testid="upgrade-card">
+          <div class="upgrade-glow"></div>
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <p class="upgrade-title">Unlock Pro AI</p>
+          <p class="upgrade-sub">Unlimited resumes, deep gap analysis & 1:1 coaching.</p>
+          <button class="btn btn-primary btn-sm" data-testid="upgrade-btn">Upgrade <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ============== MAIN ============== -->
+    <main class="main">
+      <!-- HEADER -->
+      <header class="topbar" data-testid="topbar">
+        <button class="icon-btn mobile-only" id="mobileMenuBtn" data-testid="mobile-menu-btn" aria-label="Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="crumbs" data-testid="crumbs">
+          <span class="crumb-muted">Trajectory</span>
+          <i class="fa-solid fa-chevron-right crumb-sep"></i>
+          <span class="crumb-current" id="crumbCurrent">Dashboard</span>
+        </div>
+
+        <div class="topbar-spacer"></div>
+
+        <div class="search" data-testid="search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Search skills, roles, or tasks…" data-testid="search-input" />
+          <kbd>⌘K</kbd>
+        </div>
+
+        <button class="icon-btn" data-testid="notifications-btn" aria-label="Notifications">
+          <i class="fa-regular fa-bell"></i>
+          <span class="badge-dot"></span>
+        </button>
+
+        <button class="icon-btn theme-toggle" id="themeToggle" data-testid="theme-toggle" aria-label="Toggle theme">
+          <i class="fa-solid fa-sun sun"></i>
+          <i class="fa-solid fa-moon moon"></i>
+        </button>
+
+        <div class="user" data-testid="user-menu">
+          <img src="https://i.pravatar.cc/100?img=47" alt="avatar" />
+          <div class="user-meta">
+            <span class="user-name">Aria Mendes</span>
+            <span class="user-role">Aspiring ML Engineer</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- ============= DASHBOARD ============= -->
+      <section class="view active" id="view-dashboard" data-testid="view-dashboard">
+        <div class="hero">
+          <div class="hero-left">
+            <span class="eyebrow"><span class="dot"></span> Day 47 of your sprint</span>
+            <h1 class="display">Good evening, Aria.<br/><em>Let's make today count.</em></h1>
+            <p class="hero-sub">You're <strong>68%</strong> closer to becoming a <strong>Senior ML Engineer</strong>. Three priority tasks await — your AI coach has lined them up.</p>
+            <div class="hero-actions">
+              <button class="btn btn-primary" data-testid="continue-learning-btn"><i class="fa-solid fa-play"></i> Continue learning</button>
+              <button class="btn btn-ghost" data-testid="view-roadmap-btn" data-goto="roadmap"><i class="fa-solid fa-route"></i> View roadmap</button>
+            </div>
+          </div>
+          <div class="hero-right">
+            <div class="hero-ring" data-testid="progress-ring">
+              <svg viewBox="0 0 200 200">
+                <circle cx="100" cy="100" r="86" class="ring-bg"/>
+                <circle cx="100" cy="100" r="86" class="ring-fg" id="ringFg" stroke-dasharray="540" stroke-dashoffset="540"/>
+                <defs>
+                  <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#7C5CFF"/>
+                    <stop offset="60%" stop-color="#00D4FF"/>
+                    <stop offset="100%" stop-color="#FF9466"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="ring-center">
+                <span class="ring-num" id="ringNum">0%</span>
+                <span class="ring-label">to goal</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stat cards -->
+        <div class="stat-grid" data-testid="stat-grid">
+          <article class="stat-card" data-testid="stat-streak">
+            <div class="stat-icon" style="--c1:#FF9466;--c2:#FF5C8A;"><i class="fa-solid fa-fire"></i></div>
+            <div class="stat-body">
+              <span class="stat-label">Current Streak</span>
+              <span class="stat-value"><span class="count" data-target="47">0</span><span class="stat-unit">days</span></span>
+              <span class="stat-trend up"><i class="fa-solid fa-arrow-trend-up"></i> +12% vs last month</span>
+            </div>
+            <div class="spark" data-spark="3,4,3,5,6,5,7,6,8,9,8,10"></div>
+          </article>
+
+          <article class="stat-card" data-testid="stat-tasks">
+            <div class="stat-icon" style="--c1:#7C5CFF;--c2:#00D4FF;"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="stat-body">
+              <span class="stat-label">Tasks Completed</span>
+              <span class="stat-value"><span class="count" data-target="128">0</span><span class="stat-unit">/ 188</span></span>
+              <span class="stat-trend up"><i class="fa-solid fa-arrow-trend-up"></i> 18 this week</span>
+            </div>
+            <div class="spark" data-spark="2,3,3,4,5,4,6,7,6,8,9,10"></div>
+          </article>
+
+          <article class="stat-card" data-testid="stat-time">
+            <div class="stat-icon" style="--c1:#2DD4BF;--c2:#0EA5E9;"><i class="fa-solid fa-clock"></i></div>
+            <div class="stat-body">
+              <span class="stat-label">Time Invested</span>
+              <span class="stat-value"><span class="count" data-target="142">0</span><span class="stat-unit">hrs</span></span>
+              <span class="stat-trend up"><i class="fa-solid fa-arrow-trend-up"></i> 9h this week</span>
+            </div>
+            <div class="spark" data-spark="4,3,5,6,5,7,6,8,7,9,8,10"></div>
+          </article>
+
+          <article class="stat-card" data-testid="stat-progress">
+            <div class="stat-icon" style="--c1:#F5A524;--c2:#FF5C8A;"><i class="fa-solid fa-chart-line"></i></div>
+            <div class="stat-body">
+              <span class="stat-label">Goal Progress</span>
+              <span class="stat-value"><span class="count" data-target="68">0</span><span class="stat-unit">%</span></span>
+              <span class="stat-trend up"><i class="fa-solid fa-arrow-trend-up"></i> +6% this week</span>
+            </div>
+            <div class="progress-bar" data-testid="dashboard-progress-bar">
+              <div class="progress-fill" id="dashProgress" style="--p:68%"></div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Goals + AI panel -->
+        <div class="two-col">
+          <article class="panel panel-goals" data-testid="weekly-goals">
+            <header class="panel-head">
+              <div>
+                <h3>Weekly Goals</h3>
+                <p>Five micro-objectives the AI hand-picked for you this week.</p>
+              </div>
+              <div class="goal-summary">
+                <span class="goal-count" id="goalCount">0/5</span>
+                <span class="goal-label">complete</span>
+              </div>
+            </header>
+            <ul class="goals" id="goalsList" data-testid="goals-list"></ul>
+          </article>
+
+          <article class="panel panel-ai" data-testid="ai-suggestion">
+            <div class="ai-orb"></div>
+            <span class="ai-tag"><i class="fa-solid fa-sparkles"></i> AI Suggestion · Updated 2m ago</span>
+            <h3 class="ai-title">Try a <em>focused</em> deep-dive on Transformers today.</h3>
+            <p class="ai-body">Your recent quiz scores show 92% in fundamentals but 41% in attention mechanisms. A 45-minute targeted block could close that gap before Friday's mock interview.</p>
+            <div class="ai-meta">
+              <span><i class="fa-regular fa-clock"></i> 45 min</span>
+              <span><i class="fa-solid fa-signal"></i> Medium difficulty</span>
+              <span><i class="fa-solid fa-gauge-high"></i> +4% to goal</span>
+            </div>
+            <div class="ai-actions">
+              <button class="btn btn-primary btn-sm" data-testid="ai-accept-btn"><i class="fa-solid fa-bolt"></i> Start now</button>
+              <button class="btn btn-ghost btn-sm" data-testid="ai-snooze-btn"><i class="fa-regular fa-clock"></i> Remind later</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============= ROADMAP ============= -->
+      <section class="view" id="view-roadmap" data-testid="view-roadmap">
+        <div class="section-header">
+          <div>
+            <span class="eyebrow"><span class="dot"></span> 12-week sprint</span>
+            <h1 class="display">Your Roadmap to <em>Senior ML Engineer</em></h1>
+            <p class="hero-sub">Tasks adapt as you progress. Mark them complete to see your trajectory bend upward.</p>
+          </div>
+          <div class="roadmap-meta">
+            <div class="meta-pill"><i class="fa-solid fa-bullseye"></i><span id="roadmapPercent">0%</span></div>
+            <div class="meta-pill"><i class="fa-solid fa-check"></i><span id="roadmapDone">0</span> done</div>
+          </div>
+        </div>
+
+        <div class="progress-bar lg" data-testid="roadmap-progress-bar">
+          <div class="progress-fill" id="roadmapProgress" style="--p:0%"></div>
+        </div>
+
+        <div class="roadmap-grid" id="roadmapGrid" data-testid="roadmap-grid"></div>
+
+        <!-- Learning Timeline -->
+        <div class="timeline-wrap" data-testid="learning-timeline">
+          <div class="section-sub">
+            <h2>Learning Timeline</h2>
+            <p>A look at your 3-month arc, step by step.</p>
+          </div>
+          <ol class="timeline" id="timelineList"></ol>
+        </div>
+      </section>
+
+      <!-- ============= SKILL GAP ============= -->
+      <section class="view" id="view-skillgap" data-testid="view-skillgap">
+        <div class="section-header">
+          <div>
+            <span class="eyebrow"><span class="dot"></span> Diagnostic</span>
+            <h1 class="display">Skill Gap <em>Analyzer</em></h1>
+            <p class="hero-sub">Compare what you know against what a role demands. See exactly where to invest your hours.</p>
+          </div>
+        </div>
+
+        <div class="gap-grid">
+          <article class="panel">
+            <header class="panel-head">
+              <div>
+                <h3>Your Skills</h3>
+                <p>Add the skills you already have.</p>
+              </div>
+            </header>
+            <div class="chip-input" data-testid="user-skill-input-wrap">
+              <input id="userSkillInput" type="text" placeholder="Type a skill and press Enter…" data-testid="user-skill-input"/>
+              <button class="btn btn-ghost btn-sm" id="addUserSkill" data-testid="add-user-skill"><i class="fa-solid fa-plus"></i> Add</button>
+            </div>
+            <div class="chip-wrap" id="userSkills" data-testid="user-skills"></div>
+          </article>
+
+          <article class="panel">
+            <header class="panel-head">
+              <div>
+                <h3>Target Role</h3>
+                <p>Pick a role to load required skills.</p>
+              </div>
+            </header>
+            <div class="role-picker" id="rolePicker" data-testid="role-picker"></div>
+            <div class="chip-wrap" id="roleSkills" data-testid="role-skills"></div>
+          </article>
+        </div>
+
+        <article class="panel gap-result" data-testid="gap-result">
+          <header class="panel-head">
+            <div>
+              <h3>Gap Report</h3>
+              <p>Missing skills are highlighted by priority. Matched skills are dimmed.</p>
+            </div>
+            <div class="gap-summary">
+              <span class="gap-match"><span id="gapMatchCount">0</span> matched</span>
+              <span class="gap-miss"><span id="gapMissCount">0</span> to learn</span>
+            </div>
+          </header>
+          <div class="gap-output" id="gapOutput" data-testid="gap-output"></div>
+        </article>
+      </section>
+
+      <!-- ============= COMPARISON ============= -->
+      <section class="view" id="view-compare" data-testid="view-compare">
+        <div class="section-header">
+          <div>
+            <span class="eyebrow"><span class="dot"></span> Decisions, decoded</span>
+            <h1 class="display">Career <em>Comparison</em></h1>
+            <p class="hero-sub">Two paths, four metrics, zero guesswork. Pick the trajectory that fits your life.</p>
+          </div>
+          <div class="compare-pickers">
+            <select id="careerA" class="select" data-testid="career-a-select"></select>
+            <span class="vs">vs</span>
+            <select id="careerB" class="select" data-testid="career-b-select"></select>
+          </div>
+        </div>
+
+        <div class="compare-grid" id="compareGrid" data-testid="compare-grid"></div>
+      </section>
+
+      <!-- ============= RESUME ============= -->
+      <section class="view" id="view-resume" data-testid="view-resume">
+        <div class="section-header">
+          <div>
+            <span class="eyebrow"><span class="dot"></span> One click, fully formatted</span>
+            <h1 class="display">Resume <em>Generator</em></h1>
+            <p class="hero-sub">Punch in your essentials. Our AI shapes a recruiter-ready resume in seconds.</p>
+          </div>
+        </div>
+
+        <div class="resume-wrap">
+          <article class="panel resume-form" data-testid="resume-form">
+            <div class="form-row">
+              <label>Full name</label>
+              <input id="rName" type="text" value="Aria Mendes" data-testid="resume-name"/>
+            </div>
+            <div class="form-row">
+              <label>Target role</label>
+              <input id="rRole" type="text" value="Senior Machine Learning Engineer" data-testid="resume-role"/>
+            </div>
+            <div class="form-row">
+              <label>Email · Location</label>
+              <div class="form-2col">
+                <input id="rEmail" type="email" value="aria@trajectory.app" data-testid="resume-email"/>
+                <input id="rLocation" type="text" value="Lisbon, Portugal" data-testid="resume-location"/>
+              </div>
+            </div>
+            <div class="form-row">
+              <label>Summary</label>
+              <textarea id="rSummary" rows="3" data-testid="resume-summary">ML engineer with 4+ years shipping production models. Specialised in NLP, recommendation systems, and MLOps. Looking to lead applied research at a product-led company.</textarea>
+            </div>
+            <div class="form-row">
+              <label>Core skills (comma separated)</label>
+              <input id="rSkills" type="text" value="Python, PyTorch, TensorFlow, Transformers, MLOps, AWS, Docker, SQL, Pandas, A/B Testing" data-testid="resume-skills"/>
+            </div>
+            <div class="form-row">
+              <label>Experience</label>
+              <textarea id="rExp" rows="5" data-testid="resume-experience">Senior ML Engineer · Nimbus AI · 2023–Present
+Led recsys overhaul that lifted CTR by 23% across 4M users.
+Shipped a fine-tuned LLM assistant used by 800+ support agents.
+
+ML Engineer · Looplane · 2020–2023
+Built and deployed forecasting models cutting inventory cost by €1.2M annually.</textarea>
+            </div>
+            <button class="btn btn-primary" id="generateResume" data-testid="generate-resume-btn"><i class="fa-solid fa-wand-magic-sparkles"></i> Generate Resume</button>
+          </article>
+
+          <article class="panel resume-preview" id="resumePreview" data-testid="resume-preview">
+            <div class="resume-empty" id="resumeEmpty">
+              <i class="fa-solid fa-file-lines"></i>
+              <h3>Your resume will appear here.</h3>
+              <p>Fill the form on the left and click <em>Generate</em>.</p>
+            </div>
+            <div class="resume-doc" id="resumeDoc" style="display:none;"></div>
+          </article>
+        </div>
+      </section>
+
+      <footer class="foot">
+        <span>© 2026 Trajectory · Built with intention.</span>
+        <span class="foot-right"><i class="fa-solid fa-shield-halved"></i> All progress saved locally on this device.</span>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" data-testid="toast"><i class="fa-solid fa-circle-check"></i><span id="toastMsg"></span></div>
+
+  <script src="dashboard.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"7f7b0fd8732c4326aae4b9d58d5c514a","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
